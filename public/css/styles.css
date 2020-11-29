@@ -1,0 +1,45 @@
+/* body styling - background, font, position, text alignment */
+body {
+    background-image: url('../img/pexels-element-digital-1470171.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top right;
+    background-attachment: fixed;
+    font-family: 'PT Sans', sans-serif;
+    text-align: center;
+}
+/* header.ejs partial - nav bar - font, bottom border */
+div nav {
+    border-bottom: 2px solid green;
+    font-family: 'Gochi Hand', cursive;
+    font-size: 20px;
+    color: #48B166;
+}
+/* header.ejs - nav bar - text element colors(default state) */ 
+div nav a {
+    color: white;
+}
+/* header.ejs - nav bar - text element colors(hover state) */ 
+div nav a:hover {
+    color: #A35593;
+}
+/* header.ejs - nav bar - set current page text element color */ 
+#currentPage {
+    color: #6D3B63;
+}
+/* index.ejs - main content, intro paragraph, background, position */
+div main p {
+    font-size: 28px;
+    position: fixed;
+    background-color: rgba(255,255,255,0.75);
+    margin: 0 20% auto;
+    top: 30%;
+}
+/* footer.ejs partial - top border, font size, position, width  */
+div footer {
+    border-top: 2px solid green;
+    font-size: 12px;
+    position: fixed;
+    bottom: 0%;
+    width: 100%;
+}

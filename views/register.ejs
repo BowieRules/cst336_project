@@ -1,0 +1,45 @@
+<%- include('partials/header.ejs') %>  
+
+<section id="register"><!--form-->
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6 col-sm-offset-3">
+        <% if (typeof error !== "undefined" && error) {%>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <strong>Holy guacamole! </strong> <%= error %> 
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <% } %>
+        <div class="signup-form"><!--sign up form-->
+          <h2>Register new user </h2>
+          <form action="/register" method="post" id="register_form">
+            <input id="login" name="login" placeholder="Login Name"/>
+            <input id="password" name="password" type="password" placeholder="Password"/>
+            <input id="re_password" type="password" placeholder="Password"/>
+            <input id="email" name="email" placeholder="Email Address"/>
+            <input id="fname" name="fname" placeholder="First Name"/>
+            <input id="lname" name="lname" placeholder="Last Name"/>
+            <!-- Vertically stacked radios -->
+            <div class="form-group">
+                <label class="d-block">
+                    <input type="radio" class="mr-1" name="gender"> Male
+                </label>
+                <label class="d-block">
+                    <input type="radio" class="mr-1" name="gender"> Female
+                </label>
+            </div>
+            <input id="zip" name="zip" placeholder="zip"/>
+            <div class="alert alert-danger status-alert" id="register_error">
+              Indicates a dangerous or potentially negative action.
+            </div>
+            <button type="submit" class="btn btn-default">Signup</button>
+          </form>
+        </div><!--/sign up form-->
+      </div>
+    </div>
+  </div>
+</section><!--/form-->
+
+<%- include('partials/footer.ejs') %>  
