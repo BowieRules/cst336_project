@@ -12,21 +12,54 @@ app.use(express.urlencoded({ extended: true })); // to support URL-encoded bodie
 app.set('view engine', 'ejs');
 
 app.use(session({
-  cookieName: 'session',
   secret: 'aloe vera',
-  duration: 30 * 60 * 1000,
-  activeDuration: 5 * 60 * 1000,
-  resave: true,
-  saveUninitialized: true
+  resave: false,
+  saveUninitialized: true,
+  cookie: { maxAge: 20 * 60 * 1000 } // cookie life in milliseconds = 20 minutes here
 }));
 
-// routes
-app.get("/", function(req, res){
-    res.render("index.ejs"); 
-});
 app.get("/signIn", function(req, res){
-    res.render("signIn"); 
+    res.render("signIn.ejs"); 
 });
+
+// DECLARING CUSTOM MIDDLEWARE
+const ifNotLoggedin = (req, res, next) => {
+    if(!req.session.logged_in){
+        return res.redirect('/signIn');
+    }
+    next();
+}
+
+const ifLoggedin = (req,res,next) => {
+    if(req.session.logged_in){
+        return res.redirect('/');
+    }
+    next();
+}
+// END OF CUSTOM MIDDLEWARE
+
+// routes
+
+// ROOT PAGE
+app.get("/", (req,res,next) => {
+    console.log(req.session.user);
+    res.render("index.ejs");
+});// END OF ROOT PAGE
+
+// Require login for my plants page
+app.get("/myplants", ifNotLoggedin, (req,res,next) => {
+    console.log(req.session.logged_in);
+    console.log(req.session.name);
+    console.log(req.session.login_id);
+    connection.query("SELECT `FirstName` FROM `Login` WHERE `LoginId`= ?",
+    [req.session.id], ( err, rows ) => {
+    if (err) throw err;
+    // do something with the results here
+    res.render("myplants.ejs",{  name: rows[0].FirstName  });
+    });
+});// END OF ROOT PAGE
+
+
 app.post("/signIn", function(req, res) {
     
   let login = req.body.login;
@@ -35,7 +68,7 @@ app.post("/signIn", function(req, res) {
   if (!validator.lengthValid(login, 5, 200) || !validator.lengthValid(password, 8, 20)) {
     res.render('signIn', {error: 'login or pass invalid'});
   } else {
-    connection.query("SELECT * FROM Login WHERE LoginName=?", login, (error, result) => {
+    connection.query("SELECT * FROM `Login` WHERE `LoginName` = ?", login, (error, result) => {
       if (error) throw error;
       if (result.length === 0) {
         res.render('signIn', {error: 'No such user'});
@@ -44,11 +77,10 @@ app.post("/signIn", function(req, res) {
         bcrypt.compare(password, user['HashedPwd'], (error, result) => {
           if (error) throw error;
           if (result) {
-            req.session.user = {
-              name: user['LoginName'],
-              logged_in: true
-            };
-            res.render('signIn', {error: 'Login successful'});
+            req.session.name = user['LoginName'];
+            req.session.login_id = user['LoginId'];
+            req.session.logged_in = true;
+            res.redirect('/');
           } else {
             res.render('signIn', {error: 'Wrong password'});
           }
