@@ -10,9 +10,10 @@ app.use(express.static("public"));
 app.use(express.json());       // to support JSON-encoded bodies
 app.use(express.urlencoded({ extended: true })); // to support URL-encoded bodies
 app.set('view engine', 'ejs');
+
 app.use(session({
   cookieName: 'session',
-  secret: 'random_string_goes_here',
+  secret: 'aloe vera',
   duration: 30 * 60 * 1000,
   activeDuration: 5 * 60 * 1000,
   resave: true,
@@ -47,9 +48,9 @@ app.post("/signIn", function(req, res) {
               name: user['LoginName'],
               logged_in: true
             };
-            res.render('login', {error: 'Login successful'});
+            res.render('signIn', {error: 'Login successful'});
           } else {
-            res.render('login', {error: 'Wrong password'});
+            res.render('signIn', {error: 'Wrong password'});
           }
         })
       }
@@ -70,6 +71,7 @@ app.post('/register', function(req, res) {
   let lname = req.body.lname;
   let gender = req.body.gender;
   let zip = req.body.zip;
+  console.log(req.body);
 
   // an field is missing
   if (!validator.lengthValid(login, 5, 200) || !validator.lengthValid(password, 8, 20))
@@ -79,8 +81,8 @@ app.post('/register', function(req, res) {
     res.render('register', {error: 'Invalid email length'});
   } else if (!validator.isEmail(email)) { // Wrong format
     res.render('register', {error: 'Wrong email format'});
-  } else if (!validator.alphabetOnly(password)) {
-    res.render('register', {error: 'Only alphsnumeric passwords allowed'});
+  } else if (!validator.alphabetOnly(login)) {
+    res.render('register', {error: 'Only alphanumeric logins allowed'});
   } else if (password !== re_password) {
     res.render('register', {error: 'Passwords do not match'});
   } else {
