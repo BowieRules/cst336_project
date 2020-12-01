@@ -52,7 +52,7 @@ app.get("/myplants", ifNotLoggedin, (req,res,next) => {
     console.log(req.session.name);
     console.log(req.session.login_id);
     connection.query("SELECT `FirstName` FROM `Login` WHERE `LoginId`= ?",
-    [req.session.id], ( err, rows ) => {
+    [req.session.login_id], ( err, rows ) => {
     if (err) throw err;
     // do something with the results here
     res.render("myplants.ejs",{  name: rows[0].FirstName  });
