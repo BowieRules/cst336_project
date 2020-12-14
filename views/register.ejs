@@ -1,39 +1,42 @@
-<%- include('partials/header.ejs') %>  
+<!-- header.ejs partial - header, nav bar -->
+<%- include('partials/header.ejs') %>
 
-<section id="register"><!--form-->
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-6 col-sm-offset-3">
-        <% if (typeof error !== "undefined" && error) {%>
-        <div class="alert alert-primary fade show" role="alert">
-          <strong>Holy guacamole! </strong> <%= error %> 
-        </div>
-        <% } %>
-        <div class="signup-form"><!--sign up form-->
-          <h2>Register new user </h2>
-          <form action="/register" method="post" id="register_form">
-            <input id="login" name="login" placeholder="Login Name"/>
-            <input id="password" name="password" type="password" placeholder="Password"/>
-            <input id="re_password" name="re_password" type="password" placeholder="Retype password"/>
-            <input id="email" name="email" placeholder="Email Address"/>
-            <input id="fname" name="fname" placeholder="First Name"/>
-            <input id="lname" name="lname" placeholder="Last Name"/>
-            <!-- Vertically stacked radios -->
-            <div class="form-group">
-                <label class="d-block">
-                    <input type="radio" class="mr-1" name="gender" value="M"> Male
-                </label>
-                <label class="d-block">
-                    <input type="radio" class="mr-1" name="gender" value="F"> Female
-                </label>
-            </div>
-            <input id="zip" name="zip" placeholder="zip"/>
-            <button type="submit" class="btn btn-primary">Register</button>
-          </form>
-        </div><!--/sign up form-->
-      </div>
-    </div>
-  </div>
-</section><!--/form-->
-
-<%- include('partials/footer.ejs') %>  
+<!-- index.ejs - main content -->
+        <main>
+            <section>
+                <div id="regWindow">
+                    <% if (typeof error !== "undefined" && error) {%>
+                    <div class="alert alert-primary fade show" role="alert">
+                      <strong>Holy guacamole! </strong> <%= error %> 
+                    </div>
+                    <% } %>
+                    <% if (typeof message !== "undefined" && message) {%>
+                    <div class="alert alert-info fade show" role="alert">
+                      <strong><%= message %></strong>
+                    </div>
+                    <% } %>
+                    
+                    <header>
+                        <h3>Registration</h3>
+                    </header>
+                    
+                    <hr />
+                    <form action="/register" method="POST">
+                        First Name:      <input type="text"     name="fname" />
+                        Last Name:       <input type="text"     name="lname" /><br /><br />
+                        Email(200 chars max):           <input type="text"     name="email" /><br /><br />
+                        Username(200 chars max):       <input type="text"     name="login" id="login" /><span id="feedbackLoginName"></span><br /><br />
+                        Password(8-20 chars max):        <input type="password" name="password"  id="password" /><span id="feedbackPassword"></span><br /><br />
+                        Retype Password: <input type="password" name="re_password" id="re_password" /><span id="feedbackPassword2" /></span><br /><br />
+                        Gender:          <input type="radio"    name="gender"    value="M"> Male <input type="radio" name="gender" value="F" /> Female<br /><br />
+                        <!-- zip code has pattern attr to ensure input is just 5 numbers -->
+                        Zip Code:         <input type="text"     name="zip" pattern="[0-9]{5}" title="Please enter 5 digits." placeholder="Please enter 5 digits." /><br /><br />
+                        <button class="btn btn-outline-success">Register</button>
+                    </form>
+                </div>
+            </section>
+        </main>
+        
+        
+<!-- footer.ejs partial - footer -->
+<%- include('partials/footer.ejs') %>

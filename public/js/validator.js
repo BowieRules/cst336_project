@@ -1,5 +1,5 @@
 exports.lengthValid = function (input, min, max) {
-    return input ? input.length >= min || input.length <= max: false;
+    return input ? input.length >= min && input.length <= max: false;
 };
 
 exports.alphabetOnly = function (input) {
@@ -11,5 +11,5 @@ exports.numbersOnly = function (input) {
 };
 
 exports.isEmail = function (input) {
-  return /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(input);
+  return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(input);
 };

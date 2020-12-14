@@ -6,23 +6,31 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "start": "nodemon app",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BowieRules/cst336_project.git"
+    "url": "git+https://github.com/hollygoaightly/cst336_project.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/BowieRules/cst336_project/issues"
+    "url": "https://github.com/hollygoaightly/cst336_project/issues"
   },
-  "homepage": "https://github.com/BowieRules/cst336_project#readme",
+  "homepage": "https://github.com/hollygoaightly/cst336_project#readme",
   "dependencies": {
+    "aws-sdk": "^2.808.0",
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
+    "multer": "^1.4.2",
+    "multer-s3": "^2.9.0",
     "mysql": "^2.18.1",
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^2.6.1",
+    "nodemon": "^2.0.6",
+    "path": "^0.12.7"
   }
 }
