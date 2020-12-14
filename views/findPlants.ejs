@@ -1,0 +1,24 @@
+<!-- header.ejs partial - header, nav bar -->
+<%- include('partials/header.ejs') %>
+<!-- index.ejs - main content -->
+            <% if (typeof message != "undefined" && message) {%>
+                <div class="alert alert-info fade show" role="alert">
+                  <strong><%= message %></strong>
+                </div>
+            <% } %>
+            <main>
+                <header>
+                    <p>Find Plants</p>
+                </header>
+                <br><br>
+                <section>
+                    <form action="/search">
+                        <input type="text" placeholder="Type keyword" name="keyword">
+                        <br/><br/>
+                        <button class="btn btn-outline-success">Search</button>
+                    </form>
+                </section>
+                <br><br>
+            </main>
+<!-- footer.ejs partial - footer -->
+<%- include('partials/footer.ejs') %>

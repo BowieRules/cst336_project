@@ -1,0 +1,45 @@
+<!-- header.ejs partial - header, nav bar -->
+<%- include('partials/header.ejs') %>
+
+<!-- index.ejs - main content -->
+        <main>
+            <header>
+                <p>Posts</p>
+            </header>
+<!--form for submitting yourPlant to plantTalk -->
+            <section>
+                <% if (typeof message !== "undefined" && message) {%>
+                <div class="alert alert-info fade show" role="alert">
+                  <strong><%= message %></strong>
+                </div>
+                <% } %>
+                <form action="/plantTalk" enctype="multipart/form-data" method="POST">
+                    <div class="form-group">
+                    <select class="form-control" name="usersPlant" id="usersPlant">
+                    </select>
+                    <input type="text" class="form-control" name="topic" placeholder="Topic" size="100" />
+                    <textarea type="text" class="form-control" name="posttext" placeholder="Your post text" rows="4"></textarea>
+                    <div class="form-group">
+                        <label for="file1">Attach an image</label>
+                        <input type="file" class="form-control-file" name="file1">
+                      </div>
+                    <input type="submit" class="btn btn-outline-success" value="Post Your Plant"><br /><br />
+                    </div>
+                </form>
+            </section>
+<!--form for submitting yourPlant to plantTalk -->
+      </main>
+      
+<!-- plantTalkContainer start -->
+            <section>
+                <div class="postsContainer">
+    
+                </div>
+            </section>
+<!-- plantTalkContainer end -->  
+
+
+        
+<!-- footer.ejs partial - footer -->
+<%- include('partials/footer.ejs') %>
+<script src="/js/plantTalk.js"></script>

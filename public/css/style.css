@@ -1,0 +1,101 @@
+.option:hover {
+    box-shadow:10px 10px grey;
+}
+
+/* body styling - background, font, position, text alignment */
+body {
+    background-image: url('../img/pexels-element-digital-1470171.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top right;
+    background-attachment: fixed;
+    font-family: 'PT Sans', sans-serif;
+    text-align: center;
+}
+/* header.ejs partial - nav bar - font, bottom border */
+nav {
+    border-bottom: 2px solid green;
+    font-family: 'Gochi Hand', cursive;
+    font-size: 20px;
+    color: #48B166;
+    width: 100%;
+}
+/* header.ejs - nav bar - text element colors(default state) */ 
+nav a {
+    color: white;
+}
+/* header.ejs - nav bar - text element colors(hover state) */ 
+nav a:hover {
+    color: #6D3B63;
+}
+/* header.ejs - nav bar - set current page text element color */ 
+.currentPage {
+    color: #A35593;
+}
+/* index.ejs, register.ejs, yourPlants.ejs - positioning of main semantic tag */
+main {
+    /* fixes the issue with small height cutting off text at footer */
+    padding-bottom: 200px;
+    margin: 5% 10% auto;
+}
+/* index.ejs - intro paragraph, background */
+main p {
+    font-size: 28px;
+    background-color: rgba(255,255,255,0.75);
+}
+/* footer.ejs partial - top border, font size, position, width  */
+footer {
+    border-top: 2px solid green;
+    font-size: 12px;
+    position: fixed;
+    width: 100%;
+    bottom: 0%;
+    list-style-position: inside;
+}
+/* register.ejs , signIn.ejs - background and font */
+#regWindow, #signInWindow {
+    font-size: 14px;
+    background-color: rgba(255,255,255,0.75);
+}
+/* yourPlants.ejs - primary container for all plantObjs */
+/* display properties and justification of flex items */
+.yourPlantsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+}
+/* yourPlants.ejs - container for 2 instances of plantProperties */
+/* display properties and styling */
+.plantObj {
+    display: flex;
+    width: 500px;
+    border: 1px solid black;
+    margin: 10px;
+    background-color: rgba(255,255,255,0.90);
+}
+/* yourPlants.ejs - plantProperties contains either plant properties or the notes/buttons */
+/* font and display stlying */
+#plantProperties {
+    /* remove border when submitting. Just for debugging. */
+    /*border: 1px solid black;*/
+    /* center card */
+    align-self:center;
+    /* center text */
+    align-content: center;
+    margin: 5px;
+    width: 250px;
+    font-size: 14px;
+}
+/* plantTalk.ejs - plantTalkContainer contains all the plantTalk Objects */
+/* display stlying */
+.postsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 10% auto;
+    padding-bottom: 100px;
+}
+/* results.ejs - card column count for the results */
+.card-columns {
+    column-count: 5;    
+}
